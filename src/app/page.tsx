@@ -16,6 +16,13 @@ export default function Home() {
       >
         Ver Lista de Actores
       </Link>
+      <br></br>
+      <Link
+        href="/movies"
+        className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700"
+      >
+        Ver Lista de Películas
+      </Link>
     </main>
   );
 }
