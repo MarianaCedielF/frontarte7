@@ -104,7 +104,7 @@ export default function MoviesPage() {
             <img
               src={movie.poster}
               alt={movie.title}
-              className="w-full h-48 object-cover rounded mb-3"
+              className="w-full h-32 object-cover rounded mb-3"
             />
 
             <h2 className="text-xl font-bold">{movie.title}</h2>
