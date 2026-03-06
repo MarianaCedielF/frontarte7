@@ -1,43 +1,63 @@
+// "use client": obligatorio porque usamos useState y useEffect.
 "use client";
 
+// useState, useEffect: los dos hooks fundamentales de React.
 import { useState, useEffect } from "react";
+// Link: componente de navegación de Next.js
 import Link from "next/link";
+// Actor: la interface para tipar el array de actores.
 import { Actor } from "@/types/actor";
+// getActors, deleteActor → las funciones del servicio.
 import { getActors, deleteActor } from "@/services/actorService";
 
 export default function ActorsPage() {
+  // actors: guarda el array de actores que viene del backend. Empieza vacío [].
   const [actors, setActors] = useState<Actor[]>([]);
 
+  // loading: indica si estamos esperando la respuesta del backend. Empieza en true porque al cargar la página inmediatamente pedimos los datos.
   const [loading, setLoading] = useState<boolean>(true);
 
+  // error: guarda un mensaje de error si algo falla. Empieza en null porque no hay error al inicio. El tipo string | null significa que puede ser texto o null
   const [error, setError] = useState<string | null>(null);
 
+  // async: necesario porque getActors() es asíncrona.
   const loadActors = async () => {
+    // try: intentamos ejecutar el código. Si algo falla, saltamos al catch.
     try {
+      // setLoading(true): se activa el indicador de carga.
       setLoading(true);
+      // setError(null): limpiamos errores anteriores.
       setError(null);
+      // await getActors(): espera la respuesta del backend.
       const data = await getActors();
+      // setActors(data): guarda los actores en el estado.
       setActors(data);
+      // catch: si algo falla, guardamos el mensaje de error en el estado
     } catch (err) {
       setError("No se pudieron cargar los actores. Verifica que el backend esté corriendo.");
+      // finally: siempre se ejecuta, haya error o no. se usa para desactivar el indicador de carga.
     } finally {
       setLoading(false);
     }
   };
 
+  // useEffect con el array vacío [] se ejecuta una sola vez cuando el componente aparece en pantalla por primera vez.
   useEffect(() => {
     loadActors();
   }, []);
 
   // Eliminar un actor
   const handleDelete = async (id: string, name: string) => {
+    // window.confirm(): muestra un diálogo de confirmación al usuario antes de eliminar. Si el usuario cancela, confirmed es false y salimos con return
     const confirmed = window.confirm(
       `¿Estás seguro de que quieres eliminar a ${name}?`
     );
     if (!confirmed) return;
 
     try {
+      // await deleteActor(id): llama al servicio para eliminar en el backen.
       await deleteActor(id);
+      // actors.filter((actor) => actor.id !== id): JavaScript. Fikter crea un nuevo array con todos los actores excepto el que tiene el id que eliminamos. Así se actualiza la lista sin llamar a la API de nuevo.
       setActors(actors.filter((actor) => actor.id !== id));
     } catch (err) {
       alert("Error al eliminar el actor. Intenta de nuevo.");

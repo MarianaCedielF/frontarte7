@@ -1,6 +1,9 @@
 // src/app/actors/[id]/edit/page.tsx
+
+// En Next.js con App Router, por defecto todos los componentes se ejecutan en el servidor. El servidor no tiene acceso al navegador, entonces al escribir "use client" le decimos a Next.js donde debe ser ejecutado.
 "use client";
 
+// useState: el hook de React para manejar estado. Lo importamos de "react"
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
