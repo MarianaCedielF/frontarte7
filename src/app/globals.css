@@ -1,0 +1,6 @@
+/* Inyecta los estilos base de Tailwind para que se normalice todo y se vea igual en todos los navegadores */
+@tailwind base;
+/* Inyecta los estilos de componnetes. Tailwind la necesita para funcionar bien. */
+@tailwind components;
+/* Inyecta todas las clases de utilidad de Tailwind. Son las clases que se usan como  -p-8: padding -text-3xl: tamaño de texto -font-bold: negrita -bg-blue-600:color de fondo -rounded: bordes redondeados. */
+@tailwind utilities;
