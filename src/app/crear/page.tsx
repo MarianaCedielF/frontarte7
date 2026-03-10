@@ -30,12 +30,12 @@ export default function CrearActorPage() {
   };
 
   return (
-    <main className="container mx-auto p-8">
+    <main style={{ padding: '32px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <h1 className="text-3xl font-bold text-white">{t.createActorTitle}</h1>
         <Link
           href="/actors"
-          style={{ backgroundColor: 'rgb(55, 65, 81)', color: 'white', padding: '8px 16px', borderRadius: '8px', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}
+          style={{ backgroundColor: 'white', color: 'rgb(17, 24, 39)', fontWeight: 'bold', padding: '10px 20px', borderRadius: '8px', textDecoration: 'none', fontSize: '0.95rem' }}
         >
           {t.backToList}
         </Link>

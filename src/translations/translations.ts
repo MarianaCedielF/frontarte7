@@ -5,7 +5,7 @@ export const translations = {
     appName: "BackArte7",
     viewActors: "Ver Lista de Actores",
     viewMovies: "Ver Lista de Películas",
-    backToList: "← Volver a la lista",
+    backToList: "Volver a la lista",
 
     actors: "Actores",
     createActor: "+ Crear Actor",
