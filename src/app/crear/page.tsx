@@ -1,3 +1,4 @@
+// src/app/crear/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -6,8 +7,10 @@ import Link from "next/link";
 import ActorForm from "@/components/ActorForm";
 import { createActor } from "@/services/actorService";
 import { ActorFormData } from "@/types/actor";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CrearActorPage() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -20,7 +23,7 @@ export default function CrearActorPage() {
       await createActor(data);
       router.push("/actors");
     } catch (err) {
-      setError("Error al crear el actor. Intenta de nuevo.");
+      setError(t.errorCreate);
     } finally {
       setIsSubmitting(false);
     }
@@ -28,17 +31,18 @@ export default function CrearActorPage() {
 
   return (
     <main className="container mx-auto p-8">
-      <Link
-        href="/actors"
-        className="text-blue-600 hover:underline mb-4 inline-block"
-      >
-        ← Volver a la lista
-      </Link>
-
-      <h1 className="text-3xl font-bold mb-6">Crear Actor</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+        <h1 className="text-3xl font-bold text-white">{t.createActorTitle}</h1>
+        <Link
+          href="/actors"
+          style={{ backgroundColor: 'rgb(55, 65, 81)', color: 'white', padding: '8px 16px', borderRadius: '8px', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}
+        >
+          {t.backToList}
+        </Link>
+      </div>
 
       {error && (
-        <p className="text-red-500 mb-4">{error}</p>
+        <p className="text-red-400 mb-4">{error}</p>
       )}
 
       <ActorForm

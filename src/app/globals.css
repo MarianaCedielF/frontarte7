@@ -1,6 +1,11 @@
-/* Inyecta los estilos base de Tailwind para que se normalice todo y se vea igual en todos los navegadores */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
-/* Inyecta los estilos de componnetes. Tailwind la necesita para funcionar bien. */
 @tailwind components;
-/* Inyecta todas las clases de utilidad de Tailwind. Son las clases que se usan como  -p-8: padding -text-3xl: tamaño de texto -font-bold: negrita -bg-blue-600:color de fondo -rounded: bordes redondeados. */
 @tailwind utilities;
+
+body {
+  background-color: rgb(3, 7, 18);
+  color: rgb(243, 244, 246);
+  font-family: 'Inter', sans-serif;
+}
